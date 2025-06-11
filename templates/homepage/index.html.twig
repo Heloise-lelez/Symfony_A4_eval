@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomepageController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%;  }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code>/Users/heloiselelez/Documents/Cours M1/Symfony/rendu/src/Controller/HomepageController.php</code></li>
+        <li>Your template at <code>/Users/heloiselelez/Documents/Cours M1/Symfony/rendu/templates/homepage/index.html.twig</code></li>
+    </ul>
+    <a href="{{ path('app_product') }}" class="btn btn-primary">Go to Product</a>
+    <a href="{{ path('app_add_product') }}" class="btn btn-primary">(admin) Add product</a>
+    <a href="{{ path('app_product') }}" class="btn btn-primary">(admin) Users list</a>
+
+    
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% else %}
+            <a href="{{ path('app_register') }}" class="btn btn-primary">Create an account</a>
+            <a href="{{ path('app_login') }}" class="btn btn-primary">Login</a>
+        {% endif %}
+
+</div>
+{% endblock %}

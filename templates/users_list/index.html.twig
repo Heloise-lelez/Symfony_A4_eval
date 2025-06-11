@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UsersListController!{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+{% if is_granted('ROLE_ADMIN') %}
+    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h2>Users List</h2>
+<ul class="user-list">
+    {% for user in users %}
+        <li class="user-item">
+            <div class="user-info">
+                <strong>{{ user.name }} {{ user.surname }}</strong>
+                <span>({{ user.email }})</span>
+                <span>{{ user.points }} points</span>
+                <span class="user-status">{{ user.actif ? '✅ Actif' : '❌ Inactif' }}</span>
+            </div>
+
+            <form action="{{ path('user_toggle_activate', { id: user.id }) }}" method="post">
+                <button type="submit" class="toggle-btn">
+                    {{ user.actif ? 'Désactiver' : 'Activer' }}
+                </button>
+            </form>
+        </li>
+    {% else %}
+        <li>No users found.</li>
+    {% endfor %}
+</ul>
+
+    <form method="POST" action="{{ path('user_toggle_givepoints') }}">
+    <button type="submit">Donner 100 points aux utilisateurs actifs</button>
+</form>
+    {% elseif not is_granted('ROLE_ADMIN') %}
+        <p>You do not have permission to view this page.</p>
+        <a href="{{ path('app_homepage') }}">
+            <button type="button">Go to Homepage</button>
+        </a>
+    {% endif %}
+</div>
+{% endblock %}

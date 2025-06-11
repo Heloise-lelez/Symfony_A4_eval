@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserProfilController!{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Hello {{ user.name }} {{ user.surname }}! ✅</h1>
+    <span>You have {{user.points}} points</span>
+
+<h2>Edit my informations : </h2>
+{{ form_start(editProfilForm) }}
+    {{ form_row(editProfilForm.name) }}
+    {{ form_row(editProfilForm.surname) }}
+
+    <button type="submit" class="btn">Update</button>
+{{ form_end(editProfilForm) }}
+
+</div>
+{% endblock %}

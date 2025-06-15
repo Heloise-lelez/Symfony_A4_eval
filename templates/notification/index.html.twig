@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello NotificationController!{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1> Your notifications </h1>
+
+
+    {% if notifications is empty %}
+        <p>No notifications found.</p>
+    {% else %}
+        <ul class="notification-list">
+  {% for notification in notifications %}
+    <li class="notification-item">
+      <p>
+      {# {{dump(notification.label)}} #}
+        {{ notification.label["name"] }} {{ notification.label["message"] }}
+      </p>
+      <span class="notification-date">{{ notification.label["date"] }}</span>
+    </li>
+  {% endfor %}
+</ul>
+    {% endif %}
+</div>
+{% endblock %}

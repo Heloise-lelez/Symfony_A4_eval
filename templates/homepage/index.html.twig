@@ -9,26 +9,33 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Welcome on VivaMatcha!</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/heloiselelez/Documents/Cours M1/Symfony/rendu/src/Controller/HomepageController.php</code></li>
-        <li>Your template at <code>/Users/heloiselelez/Documents/Cours M1/Symfony/rendu/templates/homepage/index.html.twig</code></li>
-    </ul>
-    <a href="{{ path('app_product') }}" class="btn btn-primary">Go to Product</a>
-    <a href="{{ path('app_add_product') }}" class="btn btn-primary">(admin) Add product</a>
-    <a href="{{ path('app_product') }}" class="btn btn-primary">(admin) Users list</a>
-
-    
+   
         {% if app.user %}
             <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                You are logged in as {{ app.user.name }} {{ app.user.surname }}. You have
+                <span class="badge bg-primary">{{ app.user.points }}</span> points.
             </div>
-        {% else %}
-            <a href="{{ path('app_register') }}" class="btn btn-primary">Create an account</a>
-            <a href="{{ path('app_login') }}" class="btn btn-primary">Login</a>
         {% endif %}
+
+         <h2>Liste des articles</h2>
+
+    <ul class="product-container">
+        {% for product in products %}
+            <li class="product-item">
+                <a class="product-item__container" href="{{ path('app_detail_product', { id: product.id }) }}">
+                <h3 class="product-item__title title" >{{ product.name }} </h3>
+                <img class="product-item__img" src="{{ asset('matcha.jpg') }}" alt="Matcha latte" >
+                <span>{{ product.description }}</span>
+                <span>Prix : {{ product.price }} points</span>
+                </a>
+            </li>
+        {% else %}
+            <li>Aucun article trouvé.</li>
+        {% endfor %}
+    </ul>
+
 
 </div>
 {% endblock %}

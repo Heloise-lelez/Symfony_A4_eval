@@ -8,6 +8,11 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
+<script>
+    const admins = {{ admins|json_encode|raw }};
+    console.log('🛠️ Admins:', admins);
+</script>
+
 <div class="example-wrapper">
     <h1>{{product.name}}</h1>
     <span> {{product.price}}</span>

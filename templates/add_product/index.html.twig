@@ -10,25 +10,65 @@
 
 <div class="example-wrapper">
 {% if is_granted('ROLE_ADMIN') %}
-<div>
-    <h1>Add a product</h1>
+<div class="form-section">
+    <h1>Ajouter un produit</h1>
 
     {{ form_start(addProductForm) }}
-        {{ form_row(addProductForm.name) }}
-        {{ form_row(addProductForm.price) }}
-        {{ form_row(addProductForm.category) }}
-        {{ form_row(addProductForm.description) }}
+        <div class="form-group">
+            {{ form_label(addProductForm.name) }}
+            {{ form_widget(addProductForm.name) }}
 
-        <button type="submit" class="btn">Register</button>
+            {{ form_label(addProductForm.price) }}
+            {{ form_widget(addProductForm.price) }}
+
+            {{ form_label(addProductForm.category) }}
+            {{ form_widget(addProductForm.category) }}
+
+            {{ form_label(addProductForm.description) }}
+            {{ form_widget(addProductForm.description) }}
+        </div>
+
+        <button type="submit" class="btn-submit">Enregistrer</button>
     {{ form_end(addProductForm) }}
-    </div>
-    <div>
-    <h1>Edit a product</h1>
+</div>
 
-<ul>
-   
-</ul>
-    </div>
+<div class="form-section">
+    <h1>Modifier un produit</h1>
+        {% for product in products %}
+        <div class="item-card">
+            <div class="item-image">
+  <img class="product-item__img" src="{{ asset('matcha.jpg') }}" alt="Matcha latte">
+</div>
+
+            <div class="item-texts">
+                {{ form_start(editProductForm[product.id]) }}
+                {{ form_row(editProductForm[product.id].name) }}
+                {{ form_row(editProductForm[product.id].description) }}
+                {{ form_row(editProductForm[product.id].price) }}
+                {{ form_row(editProductForm[product.id].category) }}
+
+                <button type="submit"  name="action" class="btn btn-save" value="save">Save</button>
+                <button type="submit"  name="action" class="btn-delete" value="delete">Supprimer</button>
+
+                {{ form_end(editProductForm[product.id]) }}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="form-section">
+    <h1>Supprimer un produit</h1>
+    <ul class="product-list">
+        {% for product in products %}
+            <li class="product-item">
+                <span>{{ product.name }} - {{ product.price }} points</span>
+                
+            </li>
+        {% else %}
+            <li>Aucun produit trouvé.</li>
+        {% endfor %}
+    </ul>
+
 {% elseif not is_granted('ROLE_ADMIN') %}
     <p>You do not have permission to view this page.</p>
     <a href="{{ path('app_homepage') }}">

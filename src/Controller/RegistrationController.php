@@ -29,7 +29,7 @@ class RegistrationController extends AbstractController
             // encode the plain password
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
 
-            $user->setCreatedAt(new \DateTime());
+            // $user->setCreatedAt(new \DateTime());
             $user->setPoints(100);
             $user->setActif(true);
             $user->setRoles(['ROLE_USER']);

@@ -23,7 +23,7 @@ final class UserProfilController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setUpdatedAt(new \DateTime());
+            // $user->setUpdatedAt(new \DateTime());
             
             $entityManager->persist($user);
             $entityManager->flush();

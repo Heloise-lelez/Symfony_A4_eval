@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 final class UsersListController extends AbstractController
 {
     #[Route('/users/list', name: 'app_users_list')]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index( EntityManagerInterface $entityManager): Response
     {
 
         $users = $entityManager->getRepository(User::class)->findAll();
@@ -28,7 +28,8 @@ final class UsersListController extends AbstractController
     {
     $user = $entityManager->getRepository(User::class)->find($id);
     $user->setActif(!$user->isActif()); 
-     $entityManager->persist($user);
+
+    $entityManager->persist($user);
     $entityManager->flush();
 
     return $this->redirectToRoute('app_users_list');

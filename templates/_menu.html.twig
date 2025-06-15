@@ -1,68 +1,31 @@
 <nav>
-    <ul>
-        <li><a href="{{ path('app_homepage') }}">Home</a></li>
-        <li><a href="{{ path('app_product') }}">Products</a></li>
+    <ul class="nav-list">
+          <a class="nav-list__logo" href="{{ path('app_homepage') }}">
+            <img src="{{ asset('logo.svg') }}" alt="Logo" style="height:50px;">
+        </a>
+
+        <li><a href="{{ path('app_homepage') }}">Homepage</a></li>
         {% if is_granted('ROLE_ADMIN') %}
         <li><a href="{{ path('app_add_product') }}">Manage Products</a></li>
         <li><a href="{{ path('app_users_list') }}">Users List</a></li>
+           <li> <a href="{{ path('app_notification') }}">Notifications</a></li>
         {% endif %}
         {% if app.user %}
-            {% if is_granted('ROLE_ADMIN') %}
-            <div class="alert alert-info">
-                You have admin privileges.
-            </div>
-        {% endif %}
-            <li>You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-            <a href="{{ path('app_user_profil') }}">My profil</a></li>
+
+            <li><a href="{{ path('app_logout') }}">Logout</a></li>
+           <li> <a href="{{ path('app_user_profil') }}">My profil</a></li>
         {% else %}
             <li><a href="{{ path('app_register') }}">Create an account</a></li>
             <li><a href="{{ path('app_login') }}">Login</a></li>
         {% endif %}
     </ul>
 </nav>
+{% if app.user and not app.user.actif %}
+<div class="custom-alert" role="alert">
+    Your account is not active. Please contact support.
+</div>
+{% endif %}
 
 <style>
-    nav {
-        background-color: #f8f9fa;
-        padding: 10px;
-        border-bottom: 1px solid #dee2e6;
-    }
-    nav ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        gap: 15px;
-    }
-    nav li {
-        display: inline;
-    }
-    nav a {
-        text-decoration: none;
-        color: #007bff;
-    }
-    nav a:hover {
-        text-decoration: underline;
-    }
-    nav a:visited {
-        color: #0056b3;
-    }
-    nav a:active {
-        color: #004085;
-    }
-    nav a:focus {
-        outline: 2px solid #0056b3;
-        outline-offset: 2px;
-    }
-    nav li:last-child {
-        margin-left: auto; /* Pushes the last item to the right */
-    }
-    nav li a {
-        padding: 5px 10px;
-        border-radius: 4px;
-    }
-    nav li a:hover {
-        background-color: #e2e6ea;
-    }             
-    <!-- Add any additional styles you need here -->
+   
 </style>

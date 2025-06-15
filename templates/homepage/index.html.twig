@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomepageController!{% endblock %}
 
 {% block body %}
 <style>
@@ -9,17 +8,17 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Welcome on VivaMatcha!</h1>
+    <h1>{{'welcome_vivamatcha'|trans}}</h1>
 
    
         {% if app.user %}
             <div class="mb-3">
-                You are logged in as {{ app.user.name }} {{ app.user.surname }}. You have
-                <span class="badge bg-primary">{{ app.user.points }}</span> points.
+                {{'logged_as'|trans}} {{ app.user.name }} {{ app.user.surname }}. {{ 'you_have'|trans }}
+                <span class="badge bg-primary">{{ app.user.points }}</span> {{ 'points'|trans }}.
             </div>
         {% endif %}
 
-         <h2>Liste des articles</h2>
+         <h2>{{'list_of_items'|trans}}</h2>
 
     <ul class="product-container">
         {% for product in products %}
@@ -28,11 +27,11 @@
                 <h3 class="product-item__title title" >{{ product.name }} </h3>
                 <img class="product-item__img" src="{{ asset('matcha.jpg') }}" alt="Matcha latte" >
                 <span>{{ product.description }}</span>
-                <span>Prix : {{ product.price }} points</span>
+                <span>{{'price'|trans}} : {{ product.price }} {{'points'}}</span>
                 </a>
             </li>
         {% else %}
-            <li>Aucun article trouvé.</li>
+            <li>{{'no_items_found'|trans}}.</li>
         {% endfor %}
     </ul>
 

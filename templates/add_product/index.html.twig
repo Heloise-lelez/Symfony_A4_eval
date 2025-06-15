@@ -1,80 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AddProductController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%;  }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
 <div class="example-wrapper">
 {% if is_granted('ROLE_ADMIN') %}
 <div class="form-section">
-    <h1>Ajouter un produit</h1>
+    <h1>{{'add_product'|trans}}</h1>
 
     {{ form_start(addProductForm) }}
         <div class="form-group">
-            {{ form_label(addProductForm.name) }}
+            {{ form_label(addProductForm.name, 'product.name'|trans) }}
             {{ form_widget(addProductForm.name) }}
 
-            {{ form_label(addProductForm.price) }}
+            {{ form_label(addProductForm.price, 'product.price'|trans) }}
             {{ form_widget(addProductForm.price) }}
 
-            {{ form_label(addProductForm.category) }}
+            {{ form_label(addProductForm.category, 'product.category'|trans) }}
             {{ form_widget(addProductForm.category) }}
 
-            {{ form_label(addProductForm.description) }}
+            {{ form_label(addProductForm.description, 'product.description'|trans) }}
             {{ form_widget(addProductForm.description) }}
         </div>
 
-        <button type="submit" class="btn-submit">Enregistrer</button>
+        <button type="submit" class="btn-submit">{{ 'save'|trans }}</button>
     {{ form_end(addProductForm) }}
-</div>
+    </div>
 
-<div class="form-section">
-    <h1>Modifier un produit</h1>
-        {% for product in products %}
-        <div class="item-card">
-            <div class="item-image">
-  <img class="product-item__img" src="{{ asset('matcha.jpg') }}" alt="Matcha latte">
-</div>
+    <div class="form-section">
+        <h1>{{ 'edit_product'|trans }}</h1>
+        {% if products is not empty %}
+            {% for product in products %}
+            <div class="item-card">
+                <div class="item-image">
+                    <img class="product-item__img" src="{{ asset('matcha.jpg') }}" alt="Matcha latte">
+                </div>
 
-            <div class="item-texts">
-                {{ form_start(editProductForm[product.id]) }}
-                {{ form_row(editProductForm[product.id].name) }}
-                {{ form_row(editProductForm[product.id].description) }}
-                {{ form_row(editProductForm[product.id].price) }}
-                {{ form_row(editProductForm[product.id].category) }}
+                <div class="item-texts">
+                    {{ form_start(editProductForm[product.id]) }}
+                    {{ form_label(editProductForm[product.id].name, 'product.name'|trans) }}
+                    {{ form_widget(editProductForm[product.id].name) }}
 
-                <button type="submit"  name="action" class="btn btn-save" value="save">Save</button>
-                <button type="submit"  name="action" class="btn-delete" value="delete">Supprimer</button>
+                    {{ form_label(editProductForm[product.id].description, 'product.description'|trans) }}
+                    {{ form_widget(editProductForm[product.id].description) }}
 
-                {{ form_end(editProductForm[product.id]) }}
+                    {{ form_label(editProductForm[product.id].price, 'product.price'|trans) }}
+                    {{ form_widget(editProductForm[product.id].price) }}
+
+                    {{ form_label(editProductForm[product.id].category, 'product.category'|trans) }}
+                    {{ form_widget(editProductForm[product.id].category) }}
+
+                    <button type="submit" name="action" class="btn btn-save" value="save">{{ 'save'|trans }}</button>
+                    <button type="submit" name="action" class="btn-delete" value="delete">{{ 'delete'|trans }}</button>
+
+                    {{ form_end(editProductForm[product.id]) }}
+                </div>
             </div>
-        </div>
-    {% endfor %}
-</div>
-
-<div class="form-section">
-    <h1>Supprimer un produit</h1>
-    <ul class="product-list">
-        {% for product in products %}
-            <li class="product-item">
-                <span>{{ product.name }} - {{ product.price }} points</span>
-                
-            </li>
+            {% endfor %}
         {% else %}
-            <li>Aucun produit trouvé.</li>
-        {% endfor %}
-    </ul>
-
-{% elseif not is_granted('ROLE_ADMIN') %}
-    <p>You do not have permission to view this page.</p>
-    <a href="{{ path('app_homepage') }}">
-        <button type="button">Go to Homepage</button>
-    </a>
-    
+            <p>{{ 'no_products_found'|trans }}</p>
+        {% endif %}
+    </div>
 {% endif %}
 </div>
+
 {% endblock %}

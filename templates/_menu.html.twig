@@ -4,25 +4,25 @@
             <img src="{{ asset('logo.svg') }}" alt="Logo" style="height:50px;">
         </a>
 
-        <li><a href="{{ path('app_homepage') }}">Homepage</a></li>
+        <li><a href="{{ path('app_homepage') }}">{{ 'homepage'|trans }}</a></li>
         {% if is_granted('ROLE_ADMIN') %}
-        <li><a href="{{ path('app_add_product') }}">Manage Products</a></li>
-        <li><a href="{{ path('app_users_list') }}">Users List</a></li>
-           <li> <a href="{{ path('app_notification') }}">Notifications</a></li>
+        <li><a href="{{ path('app_add_product') }}">{{'products'|trans}}</a></li>
+        <li><a href="{{ path('app_users_list') }}">{{'users'|trans}}</a></li>
+           <li> <a href="{{ path('app_notification') }}">{{'notifications'|trans}}</a></li>
         {% endif %}
         {% if app.user %}
 
-            <li><a href="{{ path('app_logout') }}">Logout</a></li>
-           <li> <a href="{{ path('app_user_profil') }}">My profil</a></li>
+            <li><a href="{{ path('app_logout') }}">{{'logout'|trans}}</a></li>
+           <li> <a href="{{ path('app_user_profil') }}">{{'profil'|trans}}</a></li>
         {% else %}
-            <li><a href="{{ path('app_register') }}">Create an account</a></li>
-            <li><a href="{{ path('app_login') }}">Login</a></li>
+            <li><a href="{{ path('app_register') }}">{{'create_account'|trans}}</a></li>
+            <li><a href="{{ path('app_login') }}">{{'login'|trans}}</a></li>
         {% endif %}
     </ul>
 </nav>
 {% if app.user and not app.user.actif %}
 <div class="custom-alert" role="alert">
-    Your account is not active. Please contact support.
+    {{'account_not_active'|trans}}
 </div>
 {% endif %}
 

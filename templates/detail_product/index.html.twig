@@ -1,52 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DetailProductController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%;  }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
 <script>
     const admins = {{ admins|json_encode|raw }};
-    console.log('🛠️ Admins:', admins);
 </script>
 
 <div class="example-wrapper">
     <h1>{{product.name}}</h1>
     <span> {{product.price}}</span>
     <p>{{product.description}}</p>
-    <p>Catégorie: {{product.category}}</p>
-    <p>Créé le: {{product.createdAt|date('d/m/Y H:i')}}</p>
+    <p>{{'category'|trans}} : {{product.category}}</p>
+    <p>{{'created_on'|trans}} : {{product.createdAt|date('d/m/Y H:i')}}</p>
 
     {% if user and user.actif %} 
         {% if user.points >= product.price %}
         
         <form method="POST" action="{{ path('app_detail_buy_product', { id: product.id }) }}">
-            <button type="submit" onclick="showToast()">Acheter</button>
+            <button type="submit">{{'buy'|trans}}</button>
         </form>
 
         <div id="toast" style="display:none; position: fixed; bottom: 30px; right: 30px; background: #28a745; color: #fff; padding: 16px 24px; border-radius: 4px; z-index: 9999;">
-            L'article a bien été acheté !
+            {{'item_purchased_success'|trans}}
         </div>
-        <script>
-            function showToast() {
-                var toast = document.getElementById('toast');
-                toast.style.display = 'block';
-                setTimeout(function() {
-                    toast.style.display = 'none';
-                }, 2000);
-            }
-        </script>
+       
     {% else %}
-        <button class="btn btn-secondary" disabled>Ajouter au panier</button>
-        <p class="text-danger">Vous n'avez pas assez de points pour acheter cet article.</p>
+        <button class="btn btn-secondary" disabled>{{'add_to_cart'|trans}}</button>
+        <p class="text-danger">{{'not_enough_points'|trans}}</p>
         {% endif %}
     {% elseif not user.actif %}
-        <button class="btn btn-secondary" disabled>Your account is disable. Please contact an admin</button>
+        <button class="btn btn-secondary" disabled>{{'account_disabled'|trans}}</button>
     {% else %}
-        <button class="btn btn-secondary" disabled>Connectez-vous pour acheter</button>
+        <button class="btn btn-secondary" disabled>{{'please_log_in_to_purchase'|trans}}</button>
     {% endif %}
 </div>
 {% endblock %}

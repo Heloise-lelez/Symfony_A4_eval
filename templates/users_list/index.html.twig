@@ -1,27 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UsersListController!{% endblock %}
 
 {% block body %}
 
 
 <div class="example-wrapper">
 {% if is_granted('ROLE_ADMIN') %}
-    <h1>Hello {{ controller_name }}! ✅</h1>
-    <h2>Users List</h2>
-     <form method="POST" action="{{ path('user_toggle_givepoints') }}">
-    <button  class="toggle-btn" type="submit">Donner 1000 points aux utilisateurs actifs</button>
-</form>
+    <h1>{{'user_list_title'|trans}}</h1>
+    <form method="POST" action="{{ path('user_toggle_givepoints') }}">
+        <button  class="toggle-btn" type="submit">{{'give_1000_points'|trans}}</button>
+    </form>
 <ul class="user-list">
     {% for user in users %}
         <li class="user-item">
             <div class="user-info">
                 <strong>{{ user.name }} {{ user.surname }}</strong>
                 <span>({{ user.email }})</span>
-                <span>{{ user.points }} points</span>
+                <span>{{ user.points }} {{'points'|trans}}</span>
             </div>
                 <form class="user-info" action="{{ path('user_toggle_activate', { id: user.id }) }}" method="post">
-                <span class="user-status">{{ user.actif ? '✅ Actif' : '❌ Inactif' }}</span>
+                <span class="user-status">{{ user.actif ? 'active'|trans : 'deactivate'|trans }}</span>
                     <button type="submit" class="toggle-btn">
                         {{ user.actif ? 'Désactiver' : 'Activer' }}
                     </button>
@@ -29,15 +27,15 @@
 
         </li>
     {% else %}
-        <li>No users found.</li>
+        <li>{{'no_users_found'|trans}}</li>
     {% endfor %}
 </ul>
 
    
     {% elseif not is_granted('ROLE_ADMIN') %}
-        <p>You do not have permission to view this page.</p>
+        <p>{{'no_permission'|trans}}</p>
         <a href="{{ path('app_homepage') }}">
-            <button type="button">Go to Homepage</button>
+            <button type="button" class='toggle-btn'>{{'go_to_homepage'|trans}}</button>
         </a>
     {% endif %}
 </div>

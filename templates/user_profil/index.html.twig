@@ -1,19 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserProfilController!{% endblock %}
 
 {% block body %}
 
 <div class="example-wrapper">
-    <h1>Hello {{ user.name }} {{ user.surname }}! ✅</h1>
-    <span>You have {{user.points}} points</span>
+    <h1>{{'hello'|trans}} {{ user.name }} {{ user.surname }}! 🎉</h1>
+    <span>{{'you_have'|trans}} {{user.points}} {{'points'|trans}}</span>
 
-<h2>Edit my informations : </h2>
+<h2>{{'edit_my_information'|trans}} </h2>
 {{ form_start(editProfilForm) }}
-    {{ form_row(editProfilForm.name) }}
-    {{ form_row(editProfilForm.surname) }}
+    {{ form_row(editProfilForm.name, {'label': 'name'|trans}) }}
+    {{ form_row(editProfilForm.surname, {'label': 'surname'|trans}) }}
 
-    <button type="submit" class="btn">Update</button>
+    <button type="submit" class="btn">{{ 'update'|trans }}</button>
 {{ form_end(editProfilForm) }}
 
 </div>

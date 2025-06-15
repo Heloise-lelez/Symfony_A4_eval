@@ -1,0 +1,74 @@
+#nav bar
+homepage: Homepage
+products: Manage products
+users: User list
+notifications: Notifications
+logout: Logout
+profil: My profile
+create_account: Create an account
+login: Login
+account_not_active: Your account is not active. Please contact support.
+
+# user list
+user_list_title: Users in VivaMatcha:
+give_1000_points: Give 1000 points to active users
+active: ✅ Active
+inactive: ❌ Inactive
+deactivate: Deactivate
+activate: Activate
+no_users_found: No users found.
+no_permission: You do not have permission to view this page.
+go_to_homepage: Go to homepage
+
+# user profile
+hello: Hello
+you_have: You have
+edit_my_information: Edit my information
+name: Name
+surname: Surname
+update: Update
+
+# login
+log_in: Log in!
+logged_as: Logged in as
+please_sign_in: Please sign in
+email: Email
+password: Password
+sign_in: Sign in
+
+# registration
+register: Register
+terms_and_conditions: I accept the terms and conditions
+
+# notifications
+your_notifications: Your notifications
+no_notifications_found: No notifications found.
+
+# home page
+welcome_vivamatcha: Welcome to VivaMatcha!
+points: points
+list_of_items: List of items
+price: Price
+no_items_found: No items found
+
+#detail product
+category: Category
+created_on: Created on
+buy: Buy
+item_purchased_success: The item was purchased successfully!
+add_to_cart: Add to cart
+not_enough_points: You do not have enough points to buy this item.
+account_disabled: Your account is disabled. Please contact an administrator.
+please_log_in_to_purchase: Please log in to purchase
+
+# add product
+add_product: Add a product
+product:
+  name: Product name
+  description: Product description
+  price: Product price
+  category: Product category
+edit_product: Edit a product
+save: Save
+delete: Delete
+no_products_found: No products found.

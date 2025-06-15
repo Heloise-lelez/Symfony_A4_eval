@@ -1,0 +1,74 @@
+#nav bar
+homepage: Page d'accueil
+products: Gérer les produits
+users: Liste des utilisateurs
+notifications: Notifications
+logout: Déconnexion
+profil: Mon profil
+create_account: Créer un compte
+login: Connexion
+account_not_active: Votre compte n'est pas actif. Veuillez contacter le support.
+
+# user list
+user_list_title : Utilisateurs dans VivaMatcha :
+give_1000_points: Donner 1000 points aux utilisateurs actifs
+active: ✅ Actif
+inactive: ❌ Inactif
+deactivate: Désactiver
+activate: Activer
+no_users_found: Aucun utilisateur trouvé.
+no_permission: Vous n'avez pas la permission de voir cette page.
+go_to_homepage: Aller à la page d'accueil
+
+# user profile
+hello: Bonjour
+you_have: Vous avez
+edit_my_information: Modifier mes informations
+name: Nom
+surname: Prénom
+update: Mettre à jour
+
+# login
+log_in: Se connecter !
+logged_as : Connecté en tant que
+please_sign_in:   Veuillez vous connecter
+email: Email
+password: Mot de passe
+sign_in: Se connecter
+
+# registration
+register: S'inscrire
+terms_and_conditions: J'accepte les termes et conditions
+
+# notifications
+your_notifications: Vos notifications
+no_notifications_found: Aucune notification trouvée.
+
+# home page
+welcome_vivamatcha: Bienvenue sur VivaMatcha !
+points: points
+list_of_items: Liste des articles
+price: Prix
+no_items_found: Aucun article trouvé
+
+#detail product
+category: Catégorie
+created_on: Créé le
+buy: Acheter
+item_purchased_success: L'article a été acheté avec succès !
+add_to_cart: Ajouter au panier
+not_enough_points: Vous n'avez pas assez de points pour acheter cet article.
+account_disabled: Votre compte est désactivé. Veuillez contacter un administrateur.
+please_log_in_to_purchase: Veuillez vous connecter pour acheter
+
+# add product
+add_product: Ajouter un produit
+product:
+  name: Nom du produit
+  description: Description du produit
+  price: Prix du produit
+  category: Catégorie du produit
+edit_product: Modifier un produit
+save: Enregistrer
+delete: Supprimer
+no_products_found: Aucun produit trouvé.

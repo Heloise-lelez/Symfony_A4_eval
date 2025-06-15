@@ -8,6 +8,8 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use App\Message\SendPointsMessage;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 final class UsersListController extends AbstractController
 {
@@ -35,17 +37,12 @@ final class UsersListController extends AbstractController
     return $this->redirectToRoute('app_users_list');
 }
     #[Route('/user/givepoints', name: 'user_toggle_givepoints', methods: ['POST'])]
-    public function givePointsToUser(EntityManagerInterface $entityManager): Response
+    public function givePointsToUser(MessageBusInterface $bus): Response
     {
-
-    $activeUsers = $entityManager->getRepository(User::class)->findBy(['actif' => true]);
-
-    foreach ($activeUsers as $user) {
-        $user->setPoints($user->getPoints() + 1000);
-    }
-
-    $entityManager->flush(); // Un seul flush suffit après la boucle
+    
+        $message = new SendPointsMessage(1000); 
+        $bus->dispatch($message);
 
     return $this->redirectToRoute('app_users_list');
-}
+} 
 }
